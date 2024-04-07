@@ -1,0 +1,99 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Calibri, Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            font-size: 16px; /* Default font size */
+        }
+
+        header {
+            background-color: lightgrey;
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: limegreen;
+            text-align: center;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 14px; /* Smaller font size for paragraphs */
+        }
+
+        ul {
+            color: #555;
+            font-size: 14px; /* Smaller font size for lists */
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        .btn:hover {
+            background-color: whitesmoke;
+        }
+
+        /* Underline "About Us" and "Key Features" */
+        section h2 {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Contact Management System</h1>
+        <p>Welcome to our first Web Application</p>
+    </header>
+
+    <section>
+        <h2>About Us</h2>
+        <p>Are you tired of losing track of important contacts? Say goodbye to disorganized address books and messy spreadsheets! Our Contact Management System is here to revolutionize the way you manage your contacts. Whether you're a business professional, a social butterfly, or just someone who values staying connected, our platform has everything you need to streamline your contact management process.</p>
+
+        <h2>Key Features:</h2>
+        <ul>
+            <li>Secure and user-friendly interface for managing contacts.</li>
+            <li>Efficient organization of contact information and records.</li>
+            <li>Customizable tags and categories for easy sorting and filtering.</li>
+            <li>Integration with email and calendar for seamless communication.</li>
+            <!-- Add more features as applicable to your contact management system -->
+        </ul>
+
+        <p>Experience the benefits of a streamlined contact management process with Contact Manager. Start managing your contacts effectively and stay connected with your network effortlessly.</p>
+    </section>
+
+    <!-- Include other sections of the website description here -->
+
+</body>
+</html>

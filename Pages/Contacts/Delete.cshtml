@@ -1,0 +1,98 @@
+@page
+@model ContactManager.Pages.Contacts.DeleteModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Contact - Contact Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Calibri, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 10px; /* Add padding to the top */
+            padding-bottom: 100px; /* Add padding to the bottom */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto; /* Center the container */
+        }
+
+        h1 {
+            color: limegreen; /* Heading color */
+            margin-bottom: 15x; /* Add space below the heading */
+        }
+
+        h3 {
+            color: #333; /* Subheading color */
+        }
+
+        hr {
+            border-color: black; /* Horizontal rule color */
+            margin-bottom: 20px; /* Add space below the horizontal rule */
+        }
+
+        .btn-delete {
+            background-color: #dc3545; /* Button color */
+            border-color: #dc3545;
+            margin-right: 10px; /* Add space between the button and the back link */
+        }
+
+            .btn-delete:hover {
+                background-color: #c82333; /* Darker shade on hover */
+                border-color: #c82333;
+            }
+
+        .btn-back {
+            color: lightgrey; /* Back link color */
+        }
+
+        .contact-info {
+            margin-bottom: 20px; /* Add space below the contact info */
+        }
+
+            .contact-info p {
+                margin-bottom: 5px; /* Add space between each contact detail */
+            }
+
+        .btn-group {
+            margin-top: 20px; /* Add space above the button group */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Delete Contact</h1>
+
+        <h3>Are you sure you want to delete this contact?</h3>
+
+        <div class="contact-info">
+           
+            <hr />
+            <p><strong>Name:</strong> @Html.DisplayFor(model => model.Contact.Name)</p>
+            <p><strong>Address:</strong> @Html.DisplayFor(model => model.Contact.Address)</p>
+            <p><strong>City:</strong> @Html.DisplayFor(model => model.Contact.City)</p>
+            <p><strong>State:</strong> @Html.DisplayFor(model => model.Contact.State)</p>
+            <p><strong>Zip:</strong> @Html.DisplayFor(model => model.Contact.Zip)</p>
+            <p><strong>Email:</strong> @Html.DisplayFor(model => model.Contact.Email)</p>
+        </div>
+
+        <div class="btn-group">
+            <form method="post">
+                <input type="hidden" asp-for="Contact.ContactId" />
+                <input type="submit" value="Delete" class="btn btn-delete" />
+            </form>
+            <a asp-page="./Index" class="btn btn-back">Back to List</a>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+

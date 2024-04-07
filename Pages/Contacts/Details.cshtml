@@ -1,0 +1,132 @@
+ @page
+@model ContactManager.Pages.Contacts.DetailsModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Contact Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Calibri', sans-serif;
+            background-color: #f8f9fa;
+            padding-bottom: 80px; /* Add padding to the top */
+            font-size: 15px; /* Smaller font size */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto; /* Center the container */
+            margin-bottom: 10px; /* Additional spacing at the bottom */
+        }
+
+        h1 {
+            color: limegreen; /* Heading color */
+        }
+
+        hr {
+            border-color: black; /* Horizontal rule color */
+        }
+
+        .row {
+            margin-bottom: 15px; /* Add spacing between rows */
+        }
+
+        .btn {
+            margin-right: 5px; /* Add spacing between buttons */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Details</h1>
+
+        <div>
+           
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Contact.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Contact.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Contact.Address)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Contact.Address)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Contact.City)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Contact.City)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Contact.State)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Contact.State)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Contact.Zip)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Contact.Zip)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Contact.Email)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Contact.Email)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Contact.Status)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Contact.Status)
+                </dd>
+            </dl>
+        </div>
+
+        @if (Model.Contact.Status != ContactStatus.Approved)
+        {
+            @if ((await AuthorizationService.AuthorizeAsync(User, Model.Contact, ContactOperations.Approve)).Succeeded)
+            {
+                <form style="display:inline;" method="post">
+                    <input type="hidden" name="id" value="@Model.Contact.ContactId" />
+                    <input type="hidden" name="status" value="@ContactStatus.Approved" />
+                    <button type="submit" class="btn btn-xs btn-success">Approve</button>
+                </form>
+            }
+        }
+
+        @if (Model.Contact.Status != ContactStatus.Rejected)
+        {
+            @if ((await AuthorizationService.AuthorizeAsync(User, Model.Contact, ContactOperations.Reject)).Succeeded)
+            {
+                <form style="display:inline;" method="post">
+                    <input type="hidden" name="id" value="@Model.Contact.ContactId" />
+                    <input type="hidden" name="status" value="@ContactStatus.Rejected" />
+                    <button type="submit" class="btn btn-xs btn-danger">Reject</button>
+                </form>
+            }
+        }
+
+        <div>
+            @if ((await AuthorizationService.AuthorizeAsync(User, Model.Contact, ContactOperations.Update)).Succeeded)
+            {
+                <a asp-page="./Edit" asp-route-id="@Model.Contact.ContactId" class="btn btn-light">Edit</a>
+            }
+
+            <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+
+</body>
+</html>
+

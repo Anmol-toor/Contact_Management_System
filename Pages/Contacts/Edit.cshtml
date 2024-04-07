@@ -1,0 +1,118 @@
+@page
+@model ContactManager.Pages.Contacts.EditModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Contact - Contact Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Calibri', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 50px; /* Add padding to the top */
+            margin-bottom: 50px; /* Add margin at the bottom */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto; /* Center the container */
+        }
+
+        h1 {
+            color: limegreen; /* Heading color */
+        }
+
+        h4 {
+            color: #333; /* Subheading color */
+        }
+
+        hr {
+            border-color: black; /* Horizontal rule color */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: darkgrey; /* Button color */
+            border-color: darkgrey;
+        }
+
+            .btn-primary:hover {
+                background-color: lightgrey; /* Darker shade on hover */
+                border-color: Darkgrey;
+            }
+
+        .btn-back {
+            color: #008080; /* Back link color */
+            text-decoration: none; /* Remove default underline */
+            display: inline-block; /* Make it inline block */
+            margin-top: 20px; /* Add margin at the top */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Edit Contact</h1>
+
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Contact.ContactId" />
+            <div class="form-group">
+                <label asp-for="Contact.Name" class="control-label"></label>
+                <input asp-for="Contact.Name" class="form-control" />
+                <span asp-validation-for="Contact.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.Address" class="control-label"></label>
+                <input asp-for="Contact.Address" class="form-control" />
+                <span asp-validation-for="Contact.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.City" class="control-label"></label>
+                <input asp-for="Contact.City" class="form-control" />
+                <span asp-validation-for="Contact.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.State" class="control-label"></label>
+                <input asp-for="Contact.State" class="form-control" />
+                <span asp-validation-for="Contact.State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.Zip" class="control-label"></label>
+                <input asp-for="Contact.Zip" class="form-control" />
+                <span asp-validation-for="Contact.Zip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact.Email" class="control-label"></label>
+                <input asp-for="Contact.Email" class="form-control" />
+                <span asp-validation-for="Contact.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <a asp-page="./Index" class="btn btn-back">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+
+</body>
+</html>
+

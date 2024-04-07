@@ -1,0 +1,127 @@
+@page
+@model ContactManager.Pages.Contacts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index - Contact Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Calibri, sans-serif;
+            background-color: #f8f9fa;
+            padding-bottom: 200px;
+        }
+
+        .container {
+            max-width: 80%;
+            margin: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 14px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            background-color: limegreen;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background-color: whitesmoke;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Contacts</h1>
+
+        <div class="mb-3">
+            <a asp-page="Create" class="btn btn-secondary">Create</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Contact)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                        <td>@Html.DisplayFor(modelItem => item.City)</td>
+                        <td>@Html.DisplayFor(modelItem => item.State)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Zip)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td>
+                            @if ((await AuthorizationService.AuthorizeAsync(
+                           User, item,
+                           ContactOperations.Update)).Succeeded)
+                            {
+                                <a asp-page="./Edit" asp-route-id="@item.ContactId">Edit</a>
+                                <text> | </text>
+                            }
+
+                            <a asp-page="./Details" asp-route-id="@item.ContactId">Details</a>
+
+                            @if ((await AuthorizationService.AuthorizeAsync(
+                           User, item,
+                           ContactOperations.Delete)).Succeeded)
+                            {
+                                <text> | </text>
+                                <a asp-page="./Delete" asp-route-id="@item.ContactId">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>
+
+
+
+
